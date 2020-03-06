@@ -13,7 +13,7 @@ public class User {
 
 	private String password;
 
-	private boolean privileged;
+	private Boolean privileged;
 
 	public User() {
 

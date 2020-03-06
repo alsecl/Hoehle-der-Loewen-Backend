@@ -3,6 +3,7 @@ package de.itgain.hdl.idea;
 import java.time.Duration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/idea")
 public class IdeaController {
@@ -29,6 +31,11 @@ public class IdeaController {
 
 	@GetMapping("/all")
 	private Flux<Idea> getAll() {
+		return ideaRepository.findAll();
+	}
+
+	@GetMapping("/sse")
+	private Flux<Idea> sse() {
 		return ideaRepository.findAll().delayElements(Duration.ofMillis(DELAY_TIME_MS));
 	}
 
