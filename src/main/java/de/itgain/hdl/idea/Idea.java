@@ -1,11 +1,9 @@
 package de.itgain.hdl.idea;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import de.itgain.hdl.poll.Poll;
 
 @Document
 public class Idea {
@@ -19,9 +17,7 @@ public class Idea {
 
 	private String description;
 
-	private List<Comment> comments;
-
-	private Rating rating;
+	private Poll poll;
 
 	public Idea() {
 
@@ -32,8 +28,6 @@ public class Idea {
 		this.author = author;
 		this.author = title;
 		this.description = description;
-		this.comments = new ArrayList<>();
-		this.rating = new Rating(UUID.randomUUID().toString(), 0, 0, 0, 0, 0);
 	}
 
 	public String getId() {
@@ -52,20 +46,12 @@ public class Idea {
 		return description;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
+	public Poll getPoll() {
+		return poll;
 	}
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public Rating getRating() {
-		return rating;
-	}
-
-	public void setRating(Rating rating) {
-		this.rating = rating;
+	public void setPoll(Poll poll) {
+		this.poll = poll;
 	}
 
 }

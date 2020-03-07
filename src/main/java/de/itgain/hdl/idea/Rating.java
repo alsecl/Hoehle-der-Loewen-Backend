@@ -1,5 +1,7 @@
 package de.itgain.hdl.idea;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,7 +11,7 @@ public class Rating {
 	@Id
 	private String id;
 
-	private int votes;
+	private LocalDateTime created;
 
 	private int benefit;
 
@@ -19,25 +21,20 @@ public class Rating {
 
 	private int overall;
 
+	private Comment comment;
+
 	public Rating() {
 
 	}
 
-	public Rating(String id, int votes, int benefit, int presentation, int implementability, int overall) {
+	public Rating(String id, int benefit, int presentation, int implementability, int overall, Comment comment) {
 		this.id = id;
-		this.votes = votes;
 		this.benefit = benefit;
 		this.presentation = presentation;
 		this.implementability = implementability;
 		this.overall = overall;
-	}
-
-	public int getVotes() {
-		return votes;
-	}
-
-	public void setVotes(int votes) {
-		this.votes = votes;
+		this.comment = comment;
+		this.created = LocalDateTime.now();
 	}
 
 	public int getBenefit() {
@@ -78,6 +75,22 @@ public class Rating {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Comment getComment() {
+		return comment;
+	}
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
+
+	public LocalDateTime getCreated() {
+		return created;
+	}
+
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
 	}
 
 }

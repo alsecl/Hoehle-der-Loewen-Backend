@@ -22,26 +22,26 @@ public class IdeaController {
 	private static final int DELAY_TIME_MS = 100;
 
 	@Autowired
-	private IdeaRepository ideaRepository;
+	private IdeaService ideaService;
 
 	@GetMapping("/{id}")
-	private Mono<Idea> getIdeaById(@PathVariable String id) {
-		return ideaRepository.findById(id);
+	private Mono<Idea> getIdea(@PathVariable String id) {
+		return ideaService.findById(id);
 	}
 
 	@GetMapping("/all")
 	private Flux<Idea> getAll() {
-		return ideaRepository.findAll();
+		return ideaService.findAll();
 	}
 
-	@GetMapping("/sse")
+	@GetMapping("/subscribe")
 	private Flux<Idea> sse() {
-		return ideaRepository.findAll().delayElements(Duration.ofMillis(DELAY_TIME_MS));
+		return ideaService.subscribe(Duration.ofMillis(DELAY_TIME_MS));
 	}
 
-	@PostMapping("/save")
+	@PostMapping("/create")
 	private Mono<Idea> save(@RequestBody Idea idea) {
-		return ideaRepository.save(idea);
+		return ideaService.save(idea);
 	}
 
 }
