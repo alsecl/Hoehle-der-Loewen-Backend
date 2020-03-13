@@ -1,4 +1,4 @@
-package de.itgain.hdl.idea;
+package de.itgain.hdl.controller;
 
 import java.time.Duration;
 
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.itgain.hdl.model.Idea;
+import de.itgain.hdl.service.IdeaService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

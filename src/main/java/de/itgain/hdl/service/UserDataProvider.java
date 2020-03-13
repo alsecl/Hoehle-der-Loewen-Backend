@@ -1,4 +1,4 @@
-package de.itgain.hdl.user;
+package de.itgain.hdl.service;
 
 import java.util.UUID;
 
@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
+
+import de.itgain.hdl.model.User;
+import de.itgain.hdl.repository.UserRepository;
 
 @Component
 public class UserDataProvider implements CommandLineRunner {

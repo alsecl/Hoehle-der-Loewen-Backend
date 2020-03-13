@@ -1,4 +1,4 @@
-package de.itgain.hdl.poll;
+package de.itgain.hdl.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -9,22 +9,19 @@ import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import de.itgain.hdl.idea.Rating;
-import de.itgain.hdl.user.User;
-
 @Document
 public class Poll {
 
 	@Id
 	private String id;
 
-	private String ideaId;
-
 	private Duration duration;
 
 	private LocalDateTime startTime;
 
-	private Map<User, Rating> ratings;
+	private Map<String, Rating> ratings;
+
+	private boolean finished;
 
 	public Poll() {
 
@@ -32,9 +29,9 @@ public class Poll {
 
 	public Poll(String ideaId, Duration duration) {
 		this.id = UUID.randomUUID().toString();
-		this.ideaId = ideaId;
 		this.duration = duration;
-		this.ratings = new HashMap<User, Rating>();
+		this.ratings = new HashMap<>();
+		this.finished = false;
 	}
 
 	public String getId() {
@@ -53,11 +50,11 @@ public class Poll {
 		this.startTime = startTime;
 	}
 
-	public Map<User, Rating> getRatings() {
+	public Map<String, Rating> getRatings() {
 		return ratings;
 	}
 
-	public void setRatings(Map<User, Rating> ratings) {
+	public void setRatings(Map<String, Rating> ratings) {
 		this.ratings = ratings;
 	}
 
@@ -69,12 +66,12 @@ public class Poll {
 		this.duration = duration;
 	}
 
-	public String getIdeaId() {
-		return ideaId;
+	public boolean isFinished() {
+		return finished;
 	}
 
-	public void setIdeaId(String ideaId) {
-		this.ideaId = ideaId;
+	public void setFinished(boolean finished) {
+		this.finished = finished;
 	}
 
 }

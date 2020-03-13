@@ -1,9 +1,7 @@
-package de.itgain.hdl.idea;
+package de.itgain.hdl.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import de.itgain.hdl.poll.Poll;
 
 @Document
 public class Idea {

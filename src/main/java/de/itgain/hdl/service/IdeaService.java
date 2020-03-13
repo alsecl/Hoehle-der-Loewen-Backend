@@ -1,11 +1,12 @@
-package de.itgain.hdl.idea;
+package de.itgain.hdl.service;
 
 import java.time.Duration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.itgain.hdl.poll.Poll;
+import de.itgain.hdl.model.Idea;
+import de.itgain.hdl.repository.IdeaRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -29,13 +30,6 @@ public class IdeaService {
 
 	public Mono<Idea> save(Idea idea) {
 		return ideaRepository.save(idea);
-	}
-
-	public void setRating(Poll poll) {
-		var idea = findById(poll.getIdeaId()).block();
-
-		idea.setPoll(poll);
-		ideaRepository.save(idea);
 	}
 
 }

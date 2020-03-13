@@ -1,4 +1,4 @@
-package de.itgain.hdl.idea;
+package de.itgain.hdl.model;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package de.itgain.hdl.poll;
+package de.itgain.hdl.event;
 
 public class CreatePollEvent {
 
