@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.itgain.hdl.event.CreatePollEvent;
-import de.itgain.hdl.event.VoteEvent;
 import de.itgain.hdl.model.Idea;
+import de.itgain.hdl.request.CreatePollRequest;
+import de.itgain.hdl.request.VoteRequest;
 import de.itgain.hdl.service.PollService;
 import reactor.core.publisher.Mono;
 
@@ -22,13 +22,13 @@ public class PollController {
 	private PollService pollService;
 
 	@PostMapping("/start")
-	private Mono<Idea> create(@RequestBody CreatePollEvent event) {
-		return pollService.create(event.getIdeaId(), event.getDurationInMinutes());
+	private Mono<Idea> create(@RequestBody CreatePollRequest request) {
+		return pollService.create(request.getIdeaId(), request.getDurationInMinutes());
 	}
 
 	@PostMapping("/vote")
-	private Mono<Idea> vote(@RequestBody VoteEvent event) {
-		return pollService.vote(event.getIdeaId(), event.getUserId(), event.getRating());
+	private Mono<Idea> vote(@RequestBody VoteRequest request) {
+		return pollService.vote(request.getIdeaId(), request.getUserId(), request.getRating());
 	}
 
 }
